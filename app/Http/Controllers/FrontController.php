@@ -85,7 +85,7 @@ class FrontController extends Controller
     public function confirmStatus($id)
     {
         $order = Transaction::whereRaw('md5(id) = "' . $id . '"')->first();
-        $order->update(['status' => 4]);
+        $order->update(['status' => 4, 'accepted_at' => now()]);
 
         // return redirect(route('orders.view', $order->invoice));
         return view('pages.front.confirm', compact('order'));

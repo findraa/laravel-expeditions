@@ -20,11 +20,10 @@ class CreateTransaction extends Component
     public $states;
     public $cities;
 
-    public $selectedState = NULL;
+    public $selectedState = null;
 
     protected function getRules()
     {
-
         return [
             'transaction.sender_name' => 'required',
             'transaction.sender_phone' => 'required',
@@ -60,7 +59,7 @@ class CreateTransaction extends Component
 
             TransactionDetail::insert($transactionDetail);
             $transaction->update([
-                'tracking_number' => 'TR-'.date('Ymd').rand(1111,9999),
+                'tracking_number' => 'TR-'.date('Ymd').rand(1111, 9999),
                 'total' => $cart->sum('subtotal'),
                 'status' => 0
             ]);

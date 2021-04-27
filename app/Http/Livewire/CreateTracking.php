@@ -18,7 +18,7 @@ class CreateTracking extends Component
     public $states;
     public $cities;
 
-    public $selectedState = NULL;
+    public $selectedState = null;
 
     protected function getRules()
     {

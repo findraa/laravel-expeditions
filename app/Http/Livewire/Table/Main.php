@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Table;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Transaction;
+use App\Models\Tracking;
 
 class Main extends Component
 {
@@ -18,7 +19,7 @@ class Main extends Component
     public $sortAsc = false;
     public $search = '';
 
-    protected $listeners = [ "deleteItem" => "delete_item" ];
+    protected $listeners = [ "deleteItem" => "delete_item", "deleteStatus" => "delete_status" ];
 
     public function sortBy($field)
     {
@@ -31,7 +32,7 @@ class Main extends Component
         $this->sortField = $field;
     }
 
-    public function get_pagination_data ()
+    public function get_pagination_data()
     {
         switch ($this->name) {
             case 'user':
@@ -196,9 +197,28 @@ class Main extends Component
         }
     }
 
-    public function delete_item ($id)
+    public function delete_item($id)
     {
         $data = $this->model::find($id);
+
+        if (!$data) {
+            $this->emit("deleteResult", [
+                "status" => false,
+                "message" => "Gagal menghapus data " . $this->name
+            ]);
+            return;
+        }
+
+        $data->delete();
+        $this->emit("deleteResult", [
+            "status" => true,
+            "message" => "Data " . $this->name . " berhasil dihapus!"
+        ]);
+    }
+
+    public function delete_status($id)
+    {
+        $data = Tracking::find($id);
 
         if (!$data) {
             $this->emit("deleteResult", [
@@ -219,23 +239,14 @@ class Main extends Component
     {
         $transaction = Transaction::where('id', $id)->first();
 
-        if($transaction->status == '0')
-        {
+        if ($transaction->status == '0') {
             $transaction->update(['status' => 1, 'process_at' => now()]);
-
-        }
-        else if($transaction->status == '1')
-        {
+        } elseif ($transaction->status == '1') {
             $transaction->update(['status' => 2, 'shipping_at' => now()]);
-        }
-        else if($transaction->status == '2')
-        {
+        } elseif ($transaction->status == '2') {
             $transaction->update(['status' => 3, 'finish_at' => now()]);
-        }
-        else
-        {
+        } else {
             $transaction->update(['status' => 4, 'accepted_at' => now()]);
-
         }
     }
 

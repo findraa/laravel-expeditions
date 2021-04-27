@@ -77,7 +77,7 @@
   <!-- General JS Scripts -->
   <script src="{{ asset('stisla/js/modules/jquery.min.js') }}"></script>
   <script defer async src="{{ asset('stisla/js/modules/popper.js') }}"></script>
-  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script defer async src="{{ asset('stisla/js/modules/tooltip.js') }}"></script>
   <script src="{{ asset('stisla/js/modules/bootstrap.min.js') }}"></script>
   <script defer src="{{ asset('stisla/js/modules/jquery.nicescroll.min.js') }}"></script>

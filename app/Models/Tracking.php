@@ -10,12 +10,12 @@ class Tracking extends Model
     use HasFactory;
     protected $guarded = [];
 
-     /**
-     * Search query in multiple whereOr
-     *
-     * @var mixed
-     * @return mixed
-     */
+    /**
+    * Search query in multiple whereOr
+    *
+    * @var mixed
+    * @return mixed
+    */
     public static function search($query)
     {
         return empty($query) ? static::query()

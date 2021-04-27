@@ -60,7 +60,7 @@
           {{-- <a role="button" wire:click="$emit('updateItem', {{$transaction->id}})" href="#"><i
             class="fa fa-16px fa-check"></i></a> --}}
           @endif
-          {{-- <a role="button" x-on:click.prevent="deleteItem" href="#"><i class="fa fa-16px fa-trash text-red-500"></i>
+          {{-- <a role="button" x-on:click.prevent="deleteItem" href="#"><i class="text-red-500 fa fa-16px fa-trash"></i>
           </a> --}}
         </td>
       </tr>
